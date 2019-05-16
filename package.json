@@ -1,5 +1,5 @@
 {
-  "name": "student-portal-client-material",
+  "name": "sportal-mean-app-angular7",
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
@@ -38,7 +38,9 @@
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
     "underscore": "^1.9.1",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.26",
+    "express": "^4.16.3",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
