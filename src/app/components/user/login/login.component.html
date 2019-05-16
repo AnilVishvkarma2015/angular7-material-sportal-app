@@ -1,0 +1,35 @@
+<mat-card class="register-card">
+  <mat-card-title class="card-title">LOGIN</mat-card-title>
+  <hr class="dialog-title-hr">
+  <mat-card-content style="margin-top: 20px;">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <table class="card-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="card-full-width">
+              <input matInput placeholder="Registration Number" formControlName="regNo" name="regNo" required>
+              <mat-error *ngIf="isFieldInvalid('regNo')">
+                Please enter registration number
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="card-full-width">
+              <input matInput placeholder="Password" formControlName="password" name="password" type="password"
+                required>
+              <mat-error *ngIf="isFieldInvalid('password')">
+                Please enter password
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+      <mat-card-actions align="end">
+        <button mat-raised-button color="accent" (click)="forgotPassword()">Forgot Password</button>
+        <button [disabled]="!form.valid" mat-raised-button color="accent" type="submit">LOGIN</button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

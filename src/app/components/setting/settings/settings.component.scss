@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Patua+One');
+
+h3 {
+    font-family: 'Patua One', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.create-po-card {
+    max-width: 800px;
+    height: 450px;
+    margin: 50px auto auto auto;
+  }
+
+h4 {
+    font-family: 'Patua One', sans-serif;
+    font-size: 15px;
+    text-align: center;
+    font-weight: 800;
+    margin-top: -15px;
+}
+
+.layout {
+    width: 90%;
+    max-height:  500px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tab-content {
+    margin-top: 2%;
+    font-family: 'Patua One', sans-serif;
+    color: black;
+    font-size: 15px;
+}
+
+.button {
+    margin-top: 1%;
+    font-family: 'Patua One', sans-serif;
+    color: black;
+    font-size: 15px;
+}
+
+/deep/ .mat-tab-label {
+    width: 50%;
+    background:  #000000;
+    font-family: 'Patua One', sans-serif;
+    color: white;
+    border: 1px solid white;
+    opacity: 0;
+    margin-top: 15px;
+}
+
+mat-form-field, mat-option, mat-select {
+    font-family: 'Patua One', sans-serif;
+}

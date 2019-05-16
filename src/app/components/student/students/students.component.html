@@ -1,0 +1,77 @@
+<div class="table-layout">
+  <div>
+    <div fxFlex="60%">
+      <button mat-raised-button color="primary" type="submit" (click)="onEnrollNewStudent()">Enroll</button>
+    </div>
+
+    <div fxFlex="40%" style="text-align: end">
+      <mat-form-field style="width: 55%">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="res-table-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" matSort>
+
+      <!-- Student Name Column -->
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <span class="mobile-label"> Name:</span> {{row.firstName}}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Registration No -->
+      <ng-container matColumnDef="regNo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Reg. No </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <span class="mobile-label"> Reg. No:</span> {{row.regNo}}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Class -->
+      <ng-container matColumnDef="class">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Class </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <span class="mobile-label"> Class:</span> {{row.class}}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Section -->
+      <ng-container matColumnDef="section">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Section </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <span class="mobile-label"> Section:</span> {{row.section}}
+        </mat-cell>
+      </ng-container>
+
+      <!-- Phone -->
+      <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Phone </mat-header-cell>
+        <mat-cell *matCellDef="let row"> <span class="mobile-label"> Phone:</span> {{row.phone}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef class="header-cell"> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <span class="mobile-label">Actions:</span>
+          <a class="action-btn" (click)="onEditStudent(row)">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <a class="action-btn" (click)="onDeleteStudent(row)">
+            <mat-icon>delete</mat-icon>
+          </a>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+
+    <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
+      <mat-progress-spinner color="primary" mode="indeterminate">
+      </mat-progress-spinner>
+    </div>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>

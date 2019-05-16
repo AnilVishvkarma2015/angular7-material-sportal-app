@@ -1,0 +1,63 @@
+<mat-card class="create-po-card">
+  <br>
+  <mat-card-title class="card-title">{{formType}}</mat-card-title>
+  <hr class="dialog-title-hr">
+  <mat-card-content style="margin-top: 5px;">
+    <br>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <input type="hidden" name="id" formControlName="id">
+
+      <div fxLayout="row">
+        <mat-form-field class="card-full-width" fxFlex="45%">
+          <input matInput placeholder="Registration Number" formControlName="regNo" readonly>
+        </mat-form-field>
+        <div fxFlex="10%"></div>
+        <mat-form-field class="card-full-width" fxFlex="45%">
+          <mat-select placeholder="Reason" formControlName="reason">
+            <mat-option *ngFor="let reason of reasons" [value]="reason">
+              {{ reason }}
+            </mat-option>
+          </mat-select>
+          <mat-error> Please select reason. </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row">
+        <mat-form-field class="card-full-width" fxFlex="45%">
+          <input matInput [matDatepicker]="picker" placeholder="Start Date" formControlName="startDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error> Please select start date. </mat-error>
+        </mat-form-field>
+        <div fxFlex="10%"></div>
+        <mat-form-field class="card-full-width" fxFlex="45%">
+          <input matInput [matDatepicker]="pickerTo" placeholder="End Date" formControlName="endDate">
+          <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+          <mat-datepicker #pickerTo></mat-datepicker>
+          <mat-error> Please select end date. </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row">
+        <mat-form-field class="card-full-width" fxFlex="45%">
+          <input matInput placeholder="Leave Days" formControlName="days">
+          <mat-error *ngIf="isFieldInvalid('days')">
+            Please enter leave days
+          </mat-error>
+        </mat-form-field>
+        <div fxFlex="10%"></div>
+        <mat-form-field class="card-full-width" fxFlex="45%">
+          <mat-select placeholder="Status" formControlName="status">
+            <mat-option *ngFor="let status of statuses" [value]="status">
+              {{ status }}
+            </mat-option>
+          </mat-select>
+          <mat-error> Please select status. </mat-error>
+        </mat-form-field>
+      </div>
+
+      <button [disabled]="!form.valid" mat-raised-button color="accent" type="submit">{{submitType}}</button>
+    </form>
+  </mat-card-content>
+</mat-card>

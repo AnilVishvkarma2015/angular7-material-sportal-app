@@ -1,0 +1,26 @@
+@import url(https://fonts.googleapis.com/css?family=Passion+One);
+  
+  .create-po-card {
+    max-width: 800px;
+    height: 450px;
+    margin: 50px auto auto auto;
+  }
+
+  .card-title {
+    font-family: 'Passion One', cursive;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .card-full-width {
+    width: 100%;
+  }
+
+  mat-card-actions {
+    margin: 0 auto;
+  }
+
+  button {
+      margin-top: 20px;
+  }

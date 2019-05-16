@@ -1,0 +1,66 @@
+<div *ngIf="(isUserLoggedIn | async); then authenticatedUser else guest"></div>
+<ng-template #authenticatedUser>
+  <div class="main-container">
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav #drawer class="sidenav-bar" fixedInViewport="true" [attr.role]="isHandset ? 'dialog' : 'navigation'"
+        [mode]="(isHandset | async)!.matches ? 'over' : 'side'" [opened]="!(isHandset | async)!.matches">
+        <mat-toolbar color="primary" class="current-user">Welcome, {{currentUser | async}}</mat-toolbar>
+        <mat-nav-list class="routing">
+          <mat-divider></mat-divider>
+          <div *ngIf="(isAdmin | async); then admin else user"></div>
+
+          <ng-template #admin>
+            <a mat-list-item routerLink="/students">Students</a>
+            <mat-divider></mat-divider>
+            <a mat-list-item routerLink="/notifications">Notifications</a>
+            <mat-divider></mat-divider>
+            <a mat-list-item routerLink="/leaves">Leaves</a>
+            <mat-divider></mat-divider>
+            <a mat-list-item routerLink="/settings">Settings</a>
+            <mat-divider></mat-divider>
+          </ng-template>
+
+          <ng-template #user>
+            <a mat-list-item routerLink="/leaves">Leaves</a>
+            <mat-divider></mat-divider>
+            <a mat-list-item routerLink="/notifications">Notifications</a>
+            <mat-divider></mat-divider>
+            <a mat-list-item routerLink="/settings">Settings</a>
+            <mat-divider></mat-divider>
+          </ng-template>
+        </mat-nav-list>
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+        <mat-toolbar color="primary">
+          <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" *ngIf="(isHandset | async)!.matches">
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          </button>
+          <span class="appName">SPORTAL</span>
+          <span class="spacer"></span>
+          <button type="submit" mat-raised-button color="primary" (click)="onLogout()">
+            <b>LOGOUT</b>
+          </button>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+</ng-template>
+
+<ng-template #guest>
+  <mat-toolbar color="primary" class="fixed-header">
+    <span class="appName">SPORTAL</span>
+    <span class="spacer"></span>
+    <a mat-button routerLink="/register">
+      <b>REGISTER</b>
+    </a>
+    <a mat-button routerLink="/login">
+      <b>LOGIN</b>
+    </a>
+    <a mat-button type="submit" (click)="help()">
+      <b>HELP</b>
+    </a>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</ng-template>

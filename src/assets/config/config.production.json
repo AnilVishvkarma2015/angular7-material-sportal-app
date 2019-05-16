@@ -1,0 +1,11 @@
+{
+    "env": {
+        "name": "production"
+    },
+    "logging": {
+        "console": true
+    },
+    "apiServer": {
+        "baseURL": "https://sportal-mean-app-server.herokuapp.com/"
+    }
+}

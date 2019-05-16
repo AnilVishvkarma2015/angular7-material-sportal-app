@@ -1,0 +1,92 @@
+<mat-card class="create-po-card">
+  <br>
+  <mat-card-title class="card-title">{{formType}}</mat-card-title>
+  <hr class="dialog-title-hr">
+  <mat-card-content style="margin-top: 5px;">
+    <br>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <input type="hidden" name="id" formControlName="id">
+
+      <div fxLayout="row">
+        <mat-form-field class="card-full-width" fxFlex="45%">
+          <input matInput placeholder="Registration Number" formControlName="regNo" readonly>
+        </mat-form-field>
+        <div fxFlex="10%"></div>
+        <mat-slide-toggle formControlName="isActive" class="card-full-width" fxFlex="45%"> Is Account Active</mat-slide-toggle>
+      </div>
+
+      <div fxLayout="row">
+        <mat-form-field class="card-full-width" fxFlex="45%">
+          <input matInput placeholder="First Name" formControlName="firstName">
+          <mat-error *ngIf="isFieldInvalid('firstName')">
+            Please enter first name
+          </mat-error>
+        </mat-form-field>
+        <div fxFlex="10%"></div>
+        <mat-form-field class="card-full-width" fxFlex="45%">
+          <input matInput placeholder="Last Name" formControlName="lastName">
+          <mat-error *ngIf="isFieldInvalid('lastName')">
+            Please enter lastname
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row">
+        <mat-form-field class="card-full-width" fxFlex="45%">
+          <input matInput [matDatepicker]="picker" placeholder="Date of Birth" formControlName="dob">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error> Please select dob. </mat-error>
+        </mat-form-field>
+        <div fxFlex="10%"></div>
+        <mat-form-field class="card-full-width" fxFlex="45%">
+          <input matInput placeholder="Email" formControlName="email">
+          <mat-error *ngIf="isFieldInvalid('email')">
+            Please enter email
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row">
+        <mat-form-field class="card-full-width" fxFlex="45%">
+          <mat-select placeholder="Class" formControlName="class">
+            <mat-option *ngFor="let class of classes" [value]="class">
+              {{ class }}
+            </mat-option>
+          </mat-select>
+          <mat-error> Please select class. </mat-error>
+        </mat-form-field>
+        <div fxFlex="10%"></div>
+        <mat-form-field class="card-full-width" fxFlex="45%">
+          <mat-select placeholder="Section" formControlName="section">
+            <mat-option *ngFor="let section of sections" [value]="section">
+              {{ section }}
+            </mat-option>
+          </mat-select>
+          <mat-error> Please select section. </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row">
+        <mat-form-field class="card-full-width" fxFlex="45%">
+          <input matInput placeholder="Phone" formControlName="phone">
+          <mat-error *ngIf="isFieldInvalid('phone')">
+            Please enter phone no
+          </mat-error>
+        </mat-form-field>
+        <div fxFlex="10%"></div>
+        <mat-form-field class="card-full-width" fxFlex="45%">
+          <mat-select placeholder="City" formControlName="city">
+            <mat-option *ngFor="let city of cities" [value]="city">
+              {{ city }}
+            </mat-option>
+          </mat-select>
+          <mat-error> Please select city. </mat-error>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="accent" type="reset">RESET</button>
+      <button [disabled]="!form.valid" mat-raised-button color="accent" type="submit" style="margin-left:10px;">{{submitType}}</button>
+    </form>
+  </mat-card-content>
+</mat-card>
