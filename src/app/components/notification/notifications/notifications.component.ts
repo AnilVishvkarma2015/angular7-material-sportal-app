@@ -1,11 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { Notification } from '../../../models/notification.model';
 import { NotificationService } from '../../../services/notification.service';
 import { ToastService } from '../../../services/toast.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notifications',
@@ -13,52 +14,36 @@ import { Router } from '@angular/router';
   styleUrls: ['./notifications.component.css']
 })
 export class NotificationsComponent {
-  displayedColumns = ['category', 'notice', 'actions'];
-  dataSource: MatTableDataSource<Notification>;
   notices: Notification[] = [];
   isLoading = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  isAdmin: Observable<boolean>;
 
   constructor(
     private noticeService: NotificationService,
     private toastService: ToastService,
-    private router: Router) { }
+    private router: Router) {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.isAdmin = currentUser.isAdmin;
+  }
 
   ngAfterViewInit() {
     this.loadNotifications();
-  }
-
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
   }
 
   private loadNotifications() {
     this.noticeService.getNotifications().pipe(
       finalize(() => this.isLoading = false))
       .subscribe(notices => {
-        this.dataSource = new MatTableDataSource(notices);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
+        this.notices = notices;
       }, err => {
         this.toastService.openSnackBar('Data Loading Error: ' + err.status + ' - ' + err.statusText, '', 'error-snackbar');
         throw err;
       });
   }
 
-  onCreateNotice() {
+  onNewNotice() {
     this.router.navigate(['create-notification']);
-  }
-
-  onEditNotice(noticeSelected: Notification) {
-    this.router.navigate(['create-notification'], { state: noticeSelected });
-  }
-
-  onDeleteNotice(noticeSelected: Notification) {
-    this.noticeService.deleteNotification(noticeSelected).add(() => {
-      this.loadNotifications();
-    });
   }
 }

@@ -3,8 +3,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as _ from 'underscore';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { Leave } from 'src/app/models/leave.model';
-import { LeaveService } from 'src/app/services/leave.service';
+
+import { Leave } from '../../../models/leave.model';
+import { LeaveService } from '../../../services/leave.service';
 
 @Component({
   selector: 'app-apply-leave',

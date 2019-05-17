@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
-import { ToastService } from 'src/app/services/toast.service';
+
+import { UserService } from '../../../services/user.service';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-settings',

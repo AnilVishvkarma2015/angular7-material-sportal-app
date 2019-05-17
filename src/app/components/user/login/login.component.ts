@@ -34,8 +34,6 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    // this.formSubmitAttempt = true;
-    // this.loading = true;
     this.authService.login(this.form.value.regNo, this.form.value.password)
       .pipe(first())
       .subscribe(
@@ -48,7 +46,6 @@ export class LoginComponent {
         },
         err => {
           this.toastService.openSnackBar("Invalid Credentials", '', 'error-snackbar');
-          //  this.loading = false;
         });
   }
 

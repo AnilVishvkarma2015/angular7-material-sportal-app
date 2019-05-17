@@ -12,6 +12,7 @@ import { ResetPasswordComponent } from './components/user/reset-password/reset-p
 import { SettingsComponent } from './components/setting/settings/settings.component';
 import { LeavesComponent } from './components/leave/leaves/leaves.component';
 import { ApplyLeaveComponent } from './components/leave/apply-leave/apply-leave.component';
+import { CreateNotificationComponent } from './components/notification/create-notification/create-notification.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,11 @@ const routes: Routes = [
     path: 'apply-leave',
     canActivate: [AuthGuard],
     component: ApplyLeaveComponent
+  },
+  {
+    path: 'create-notification',
+    canActivate: [AuthGuard],
+    component: CreateNotificationComponent
   },
   { path: '**', redirectTo: '' }
 ];

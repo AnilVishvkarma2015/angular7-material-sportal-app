@@ -1,13 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Passion+One);
-
-  .reset-pass-card {
-    max-width: 300px;
-    height: 250px;
-    margin: 150px auto auto auto;
-  }
-
-  .card-full-width {
-    width: 100%;
+  
+  .create-notice-card {
+    max-width: 800px;
+    height: 300px;
+    margin: 50px auto auto auto;
   }
 
   .card-title {
@@ -16,8 +12,15 @@
     text-align: center;
     margin-bottom: 25px;
   }
-  
+
+  .card-full-width {
+    width: 100%;
+  }
+
   mat-card-actions {
     margin: 0 auto;
   }
- 
+
+  button {
+      margin-top: 20px;
+  }

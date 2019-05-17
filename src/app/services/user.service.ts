@@ -31,7 +31,6 @@ export class UserService {
         return res;
       }, error => {
         this.toastService.openSnackBar('Registration No/Email already registered', '', 'error-snackbar');
-        // this.router.navigate(['register']);
         throw error;
       });
   }

@@ -1,56 +1,19 @@
 <div class="table-layout">
-  <div>
-    <div fxFlex="60%">
-      <button mat-raised-button color="primary" type="submit" (click)="onCreateNotice()">New Notice</button>
-    </div>
-
-    <div fxFlex="40%" style="text-align: end">
-      <mat-form-field style="width: 55%">
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-      </mat-form-field>
-    </div>
+  <div *ngIf="(isAdmin)">
+    <button mat-raised-button color="primary" type="submit" (click)="onNewNotice()">New Notice</button>
   </div>
 
-  <div class="res-table-container mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource" matSort>
+  <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center;">
+    <mat-progress-spinner color="primary" mode="indeterminate">
+    </mat-progress-spinner>
+  </div>
 
-      <!-- Category Column -->
-      <ng-container matColumnDef="category" style="width: 20%;">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Category </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <span class="mobile-label"> Category:</span> {{row.category}}
-        </mat-cell>
-      </ng-container>
-
-      <!-- Notice -->
-      <ng-container matColumnDef="notice" style="width: 80%;">
-        <mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell"> Notice </mat-header-cell>
-        <mat-cell *matCellDef="let row"> <span class="mobile-label"> Notice:</span> {{row.notice}}
-        </mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef class="header-cell"> Actions </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          <span class="mobile-label">Actions:</span>
-          <a class="action-btn" (click)="onEditNotice(row)">
-            <mat-icon>edit</mat-icon>
-          </a>
-          <a class="action-btn" (click)="onDeleteNotice(row)">
-            <mat-icon>delete</mat-icon>
-          </a>
-        </mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;">
-      </mat-row>
-    </mat-table>
-
-    <div *ngIf="isLoading" style="display: flex; justify-content: center; align-items: center; background: white;">
-      <mat-progress-spinner color="primary" mode="indeterminate">
-      </mat-progress-spinner>
-    </div>
-
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  <div *ngFor="let notice of notices">
+    <br>
+    <mat-card>
+      <div class="notice" style="font-size: 13px;">{{ notice.category }} </div> <br>
+      <div class="notice" style="font-size: 12px;">{{ notice.notice }} </div><br>
+      <div class="notice" style="font-size: 13px;">{{ notice.createdDate }} </div>
+    </mat-card>
   </div>
 </div>

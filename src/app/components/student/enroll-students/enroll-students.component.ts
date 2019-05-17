@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as _ from 'underscore';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user.model';
-import { UserService } from 'src/app/services/user.service';
-import { ToastService } from 'src/app/services/toast.service';
+
+import { User } from '../../../models/user.model';
+import { UserService } from '../../../services/user.service';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-enroll-students',
@@ -98,7 +99,6 @@ export class EnrollStudentsComponent {
   }
 
   onSubmit() {
-    console.log('--- form ---', this.form.value);
     if (this.form.value.id && this.form.value.id !== null && this.form.value.id !== undefined) {
       this.userService.updateUser(this.form.value).add(() => {
         this.router.navigate(['students']);

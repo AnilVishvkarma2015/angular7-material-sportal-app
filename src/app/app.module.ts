@@ -25,6 +25,7 @@ import { ResetPasswordComponent } from './components/user/reset-password/reset-p
 import { SettingsComponent } from './components/setting/settings/settings.component';
 import { LeavesComponent } from './components/leave/leaves/leaves.component';
 import { ApplyLeaveComponent } from './components/leave/apply-leave/apply-leave.component';
+import { CreateNotificationComponent } from './components/notification/create-notification/create-notification.component';
 
 export function initConfig(config: AppConfig) {
   return () => config.load();
@@ -43,7 +44,8 @@ export function initConfig(config: AppConfig) {
     ResetPasswordComponent,
     SettingsComponent,
     LeavesComponent,
-    ApplyLeaveComponent
+    ApplyLeaveComponent,
+    CreateNotificationComponent
   ],
   imports: [
     BrowserModule,
